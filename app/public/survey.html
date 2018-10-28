@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Friend Finder App</title>
+    <!-- Link to Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link to jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>     
+
+<body>
+    <!-- //////////////////////////////////////////////////////////////-->
+    <div class="container">
+        <div>
+            <!-- Initial info: Name, Photo, Looking for -->
+            <h2><strong>Let's Find Your New BFF!</strong></h2>
+            <h3>Tell Us A Little About You</h3>
+
+            <h4>What is your name? *Required</h4>
+                <!-- Form Input - Name -->
+                <input class="form-info" id="username" required="" type="text"/>
+            <h4>Link to your photo *Required</h4>
+                <!-- Form Input - Photo Link -->
+                <input class="form-info" id="photo"required="" type="text"/>
+
+        <!-- <div>
+            <span class="showName" id="user_name"></span>
+            <br>
+            <img src=
+            <br>
+            <span class=""
+        </div> -->
+    <!-- //////////////////////////////////////////////////////////////-->
+
+
+
+    <!-- ============================================================= -->
+        <!-- Survey Questions -->
+        <h3>These survey questions will help us match you with your friends:</h3>
+    
+        <h4>1) Your mind is always buzzing with unexplored ideas and plans.</h4>
+        <select class="drop-down" id="q1";>
+            <option value=""></option>
+            <option value="1">1(Strongly Disagree</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5(Strongly Agree)</option>
+        </select> 
+
+        <h4>2) Generally speaking, you rely more on your experience than your imagination.</h4>
+        <select class="drop-down"  id="q2";>
+            <option value=""></option>
+            <option value="1">1(Strongly Disagree</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5(Strongly Agree)</option>
+        </select> 
+
+        <h4>3) You find it easy to stay relaxed and focused even when there is some pressure.</h4>
+        <select class="drop-down"  id="q3";>
+            <option value=""></option>
+            <option value="1">1(Strongly Disagree</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5(Strongly Agree)</option>
+        </select> 
+
+        <h4>4) You rarely do something just out of sheer curiosity.</h4>
+        <select class="drop-down"  id="q4";>
+            <option value=""></option>
+            <option value="1">1(Strongly Disagree</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5(Strongly Agree)</option>
+        </select> 
+
+        <h4>5) People can rarely upset you.</h4>
+        <select class="drop-down"  id="q5";>
+            <option value=""></option>
+            <option value="1">1(Strongly Disagree</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5(Strongly Agree)</option>
+        </select> 
+
+        <h4>6) It is often difficult for you to relate to other people’s feelings.</h4>
+        <select class="drop-down"  id="q6";>
+            <option value=""></option>
+            <option value="1">1(Strongly Disagree</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5(Strongly Agree)</option>
+        </select> 
+
+        <h4>7) In a discussion, truth should be more important than people’s sensitivities.</h4>
+        <select class="drop-down"  id="q7";>
+            <option value=""></option>
+            <option value="1">1(Strongly Disagree</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5(Strongly Agree)</option>
+        </select> 
+
+        <h4>8) You rarely get carried away by fantasies and ideas.</h4>
+        <select class="drop-down"  id="q8";>
+            <option value=""></option>
+            <option value="1">1(Strongly Disagree</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5(Strongly Agree)</option>
+        </select> 
+
+        <h4>9) You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</h4>
+        <select class="drop-down"  id="q9";>
+            <option value=""></option>
+            <option value="1">1(Strongly Disagree</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5(Strongly Agree)</option>
+        </select> 
+
+        <h4>10) You feel more energetic after spending time with a group of people.</h4>
+        <select class="drop-down"  id="q10";>
+            <option value=""></option>
+            <option value="1">1(Strongly Disagree</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5(Strongly Agree)</option>
+        </select> 
+        <br>
+        <br>
+    <!-- ============================================================= -->
+
+        <!-- Submit Button -->
+        <button class="submitButton" id="submit" type="submit">SUBMIT</button>
+        <br>
+        <br>
+    <footer>
+        <div class="container">
+            <p><a href="/api/home">API Home Link</a> | <a href="/api/waitlist">API Wait List</a></p>
+         </div>
+
+    </footer>
+    </div>
+
+    <script>
+        $("#submit").on("click", function(){
+            var uData = {
+                name: $("#username").val().trim(),
+                photo: $("#photo").val.trim(),
+                scores: [$("#q1").val().trim(),$("#q2").val().trim(),$("#q3").val().trim(),$("#q4").val().trim(),$("#q5").val().trim(),$("#q6").val().trim()
+            ,$("#q7").val().trim(),$("#q8").val().trim(),$("#q9").val().trim(),$("#q10").val().trim()]
+            };
+
+            $.post("/api/friends",uData,function(data){
+                console.log(data);
+            });
+
+            
+        })
+    </script>
+</body>
