@@ -1,10 +1,10 @@
 // ===============================================================================
 // LOAD DATA
 // We are linking our routes to a series of "data" sources.
-// These data sources hold arrays of information on table-data, waitinglist, etc.
+// These data sources hold arrays of information on friendsList
 // ===============================================================================
 
-var friendList = require("../data/friends.js");
+var friendsArray = require("../data/friends.js");
 
 
 // ===============================================================================
@@ -19,11 +19,7 @@ module.exports = function(app) {
   // ---------------------------------------------------------------------------
 
   app.get("/api/friends", function(req, res) {
-    res.json(friends);
-  });
-
-  app.get("/api/waitlist", function(req, res) {
-    res.json(waitListData);
+    res.json(friendsArray);
   });
 
   // API POST Requests
@@ -35,28 +31,44 @@ module.exports = function(app) {
   // ---------------------------------------------------------------------------
 
   app.post("/api/friends", function(req, res) {
-    // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
-    // It will do this by sending out the value "true" have a table
-    // req.body is available since we're using the body parsing middleware
-    if (tableData.length < 5) {
-      tableData.push(req.body);
-      res.json(true);
-    }
-    else {
-      waitListData.push(req.body);
-      res.json(false);
-    }
-  });
+    
+    var bestMatch = {
+      username: "",
+      photo: "",
+      pointDifference: 10000
+    };
 
+    console.log(req.body);
+
+    var uData = req.body;
+    var uScores = uData.scores;
+
+    console.log(uScores);
+
+    var totalDifference = 0;
+
+    // nested for loop to compare uData to other uData (nested objects) within friendsArray
+    for (var i=0; i < friendsArray.length; i++){
+      console.log(friends[i]);
+      totalDifference = 0;
+
+      for (var j=0; j < friends[i].scores[j]; j++) {
+        totalDifference += Math.abs(parseInt(userScores[j]) - parseInt(friends[i].scores[j]));
+
+        if (totalDifference <= bestMatch.pointDifference) {
+          bestMatch.name = friendsArray[i].name;
+          bestMatch.photo = friendsArray[i].photo;
+          bestMatch.pointDifference = totalDifference;
+        }
+      }
+    }
+    // push user to friendsArray
+    friendsArray.push(uData);
+
+    // Return json with the user's bestMatch
+    res.json(bestMatch);
+  });
   // ---------------------------------------------------------------------------
   // I added this below code so you could clear out the table while working with the functionality.
   // Don"t worry about it!
-
-  app.post("/api/clear", function(req, res) {
-    // Empty out the arrays of data
-    tableData.length = [];
-    waitListData.length = [];
-
-    res.json({ ok: true });
-  });
 };

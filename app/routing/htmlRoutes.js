@@ -2,10 +2,8 @@
 // Add path package
 var path = require("path");
 
-// ===============================================================================
-// ROUTING
-// ===============================================================================
 
+// Routing
 module.exports = function(app) {
 
   app.get("/survey", function(req, res) {
