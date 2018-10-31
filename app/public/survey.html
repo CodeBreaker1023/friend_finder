@@ -228,10 +228,9 @@
                 console.log("modal working: match found!")
             })
 
-            $.post("/api/friends",uData,function(data){
-                console.log(data);
-                friendsArray.push(uData);
-            });
+            // $.post("/api/friends",uData,function(data){
+            //     console.log(data);
+            // });
         } else {
             // Notify user if all fields have not been completed
             alert("All fields must be completed before submitting");
